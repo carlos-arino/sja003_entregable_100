@@ -1,8 +1,8 @@
-/* Ejercicio entregable 000
+/* Ejercicio entregable 100
  Deben de utilizar este archivo los alumnos con c<5, d<5, u>=5
  siendo c,d,u las tres últimas cifras del DNI 22000cdu -W
- Luminosidad y motor paso a paso con encoder
- Para cambiar Luminosidad o haz click sobre el sensor NTC durante la simulacion
+Temperatura y motor paso a paso con encoder
+ Para cambiar la Temperatura o haz click sobre el sensor DS18B20 durante la simulacion
  rellenar vuestro nombre y DNI
  NOMBRE ALUMNO: XXXXX
  DNI: XXXXX
