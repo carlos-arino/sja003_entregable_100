@@ -10,16 +10,19 @@
 */
 #include <Stepper.h>
 #include <Arduino.h>
+#include <OneWire.h>
+#include <DallasTemperature.h>
 
 Stepper myStepper(200, 14, 27, 26, 25);
 
-const int potPin = 34; // Pin analógico para el potenciómetro
-const int luxPin = 35; // Pin analógico para el sensor de luminosidad
 const int encAPin = 23; // Pin para el canal A del encoder
 const int encBPin = 22; // Pin para el canal B del encoder
 const int encCPin = 16; // Pin para el canal C del encoder
 const int encDPin = 15; // Pin para el canal D del encoder
+const int tempPin = 4;  // Pin de datos del DS18B20 (OneWire)
 
+OneWire oneWire(tempPin);
+DallasTemperature sensors(&oneWire);
 
 void setup()
 {
@@ -31,6 +34,7 @@ void setup()
   pinMode(encBPin, INPUT);
   pinMode(encCPin, INPUT);
   pinMode(encDPin, INPUT);
+  sensors.begin();
 }
 
 void loop()
@@ -41,6 +45,10 @@ void loop()
   {
     myStepper.step(20);
     delay(200);
+
+    sensors.requestTemperatures();
+    const float tempC = sensors.getTempCByIndex(0);
+
     Serial.print(digitalRead(encAPin));
     Serial.print(", ");
     Serial.print(digitalRead(encBPin));
@@ -49,7 +57,7 @@ void loop()
     Serial.print(", ");
     Serial.print(digitalRead(encDPin));
     Serial.print(", ");
-    Serial.println(analogRead(luxPin));
+    Serial.println(tempC);
   }
 
   // Retrocede de 100 a 0 en pasos de 20 y muestra lecturas en cada punto
@@ -57,6 +65,10 @@ void loop()
   {
     myStepper.step(-20);
     delay(200);
+
+    sensors.requestTemperatures();
+    const float tempC = sensors.getTempCByIndex(0);
+
     Serial.print(digitalRead(encAPin));
     Serial.print(", ");
     Serial.print(digitalRead(encBPin));
@@ -65,7 +77,6 @@ void loop()
     Serial.print(", ");
     Serial.print(digitalRead(encDPin));
     Serial.print(", ");
-    Serial.println(analogRead(luxPin));
+    Serial.println(tempC);
   }
- 
 }
