@@ -1,13 +1,14 @@
-/* Ejercicio entregable 100
- Deben de utilizar este archivo los alumnos con c<5, d<5, u>=5
- siendo c,d,u las tres últimas cifras del DNI 22000cdu -W
-Temperatura y motor paso a paso con encoder
- Para cambiar la Temperatura o haz click sobre el sensor DS18B20 durante la simulacion
+/* Ejercicio entregable 101
+ Deben de utilizar este archivo los alumnos con c>=5, d<5, u>=5
+ siendo c, d y u las tres últimas cifras del DNI 22000cdu -W
+ Sensor de temperatura y motor paso a paso con potenciometro
+ Para cambiar la temperatura haz click sobre el anemometro durante la simulacion
  rellenar vuestro nombre y DNI
  NOMBRE ALUMNO: XXXXX
  DNI: XXXXX
- ENLACE WOKWI: XXXXXXX
+ ENLACE WOKWI: XXXXXXXXXXX
 */
+
 #include <Stepper.h>
 #include <Arduino.h>
 #include <OneWire.h>
